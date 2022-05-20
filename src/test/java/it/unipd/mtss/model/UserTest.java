@@ -5,6 +5,7 @@
 
 package it.unipd.mtss.model;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,5 +50,42 @@ public class UserTest {
     public void testInvalidBirth() {
         System.out.println(" testInvalidBirth");
         User userNull = new UserImpl(10, "Name", "Surname", LocalDate.of(3000, 11, 23));
+    }
+    @Test
+    public void testIdSetGet() {
+        System.out.println(" testIdSetGet");
+        user.setId(11);
+        assertEquals(11, user.getId());
+    }
+
+    @Test
+    public void testNameSetGet() {
+        System.out.println(" testNameSetGet");
+        user.setName("NewName");
+        assertEquals("NewName", user.getName());
+    }
+
+    @Test
+    public void testSurnameSetGet() {
+        System.out.println(" testSurnameSetGet");
+        user.setSurname("NewSurname");
+        assertEquals("NewSurname", user.getSurname());
+    }
+
+    @Test
+    public void testBirthSetGet() {
+        System.out.println(" testBirthSetGet");
+        user.setBirth(LocalDate.of(2011, 11, 23));
+        assertEquals(LocalDate.of(2011, 11, 23), user.getBirth());
+    }
+
+    @Test
+    public void testAgeGet() {
+        System.out.println(" testAgeSetGet");
+        assertEquals(20, user.getAge());
+    }
+    @After
+    public void end() {
+        System.out.println("    FINE TEST");
     }
 }

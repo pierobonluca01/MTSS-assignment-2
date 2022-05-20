@@ -5,8 +5,18 @@
 
 package it.unipd.mtss.model;
 
-public interface User {
+import java.time.LocalDate;
 
+public interface User {
+    long getId();
+    void setId(long id);
+    String getName();
+    void setName(String name);
+    String getSurname();
+    void setSurname(String surname);
+    LocalDate getBirth();
+    void setBirth(LocalDate birth);
+    int getAge();
 }
 
 
