@@ -84,6 +84,7 @@ public class UserTest {
         System.out.println(" testAgeSetGet");
         assertEquals(20, user.getAge());
     }
+
     @After
     public void end() {
         System.out.println("    FINE TEST");
