@@ -22,10 +22,25 @@ public class BillImpl implements Bill {
         if(user == null) throw new BillException("L'utente risulta null.");
 
         double total = 0;
+        int processorsCount = 0;
+        double lessExpensiveProcessor = Double.MAX_VALUE;
 
         for(EItem item : itemsOrdered) {
             //[1]
             total += item.getPrice();
+
+            //[2]
+            if(item.getItemType() == ProductType.Processor) {
+                processorsCount++;
+                if(item.getPrice() < lessExpensiveProcessor) {
+                    lessExpensiveProcessor = item.getPrice();
+                }
+            }
+        }
+
+        //[2]
+        if(processorsCount > 5) {
+            total = total-(lessExpensiveProcessor/2);
         }
 
         return total;
