@@ -70,6 +70,21 @@ public class BillTest {
 
         assertEquals(490.50, bill.getOrderPrice(items, user), 1e-3);
     }
+
+    @Test//[2]
+    public void testMore5Processors() throws BillException {
+        System.out.println(" testMore5Processors");
+
+        items.add(new EItemImpl(ProductType.Processor, "Intel i3", 99.90));
+        items.add(new EItemImpl(ProductType.Processor, "Intel i5", 140.90));
+        items.add(new EItemImpl(ProductType.Processor, "Intel i7", 170.90));
+        items.add(new EItemImpl(ProductType.Processor, "AMD Ryzen 3", 190.90));
+        items.add(new EItemImpl(ProductType.Processor, "AMD Ryzen 5", 130.90));
+        items.add(new EItemImpl(ProductType.Processor, "AMD Ryzen 7", 160.90));
+
+        assertEquals(844.45, bill.getOrderPrice(items, user), 1e-3);
+    }
+    
     @After
     public void end() {
         System.out.println("    FINE TEST");
