@@ -7,6 +7,7 @@ package it.unipd.mtss.business;
 
 import it.unipd.mtss.business.exception.BillException;
 import it.unipd.mtss.model.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,6 +30,34 @@ public class BillTest {
         System.out.print("\nINIZIO TEST");
     }
 
+    @Test(expected = BillException.class)
+    public void testNullItems() throws BillException {
+        System.out.println(" testNullItems");
+        List<EItem> itemsNull = null;
+        double price = bill.getOrderPrice(itemsNull, user);
+    }
+
+    @Test(expected = BillException.class)
+    public void testNullItem() throws BillException {
+        System.out.println(" testNullItem");
+        items.add(null);
+        double price = bill.getOrderPrice(items, user);
+    }
+
+    @Test(expected = BillException.class)
+    public void testEmptyList() throws BillException {
+        System.out.println(" testEmptyList");
+        List<EItem> itemsNull = new ArrayList<>();
+        double price = bill.getOrderPrice(itemsNull, user);
+    }
+
+    @Test(expected = BillException.class)
+    public void testNullUser() throws BillException {
+        System.out.println(" testNullUser");
+        User userNull = null;
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        double price = bill.getOrderPrice(items, userNull);
+    }
     @Test//[1]
     public void testTotal() throws BillException {
         System.out.println(" testTotal");
@@ -40,6 +69,10 @@ public class BillTest {
         items.add(new EItemImpl(ProductType.Keyboard, "Corsair K65", 60.90));
 
         assertEquals(490.50, bill.getOrderPrice(items, user), 1e-3);
+    }
+    @After
+    public void end() {
+        System.out.println("    FINE TEST");
     }
 
 }
