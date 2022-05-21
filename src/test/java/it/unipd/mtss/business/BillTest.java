@@ -140,6 +140,15 @@ public class BillTest {
         assertEquals(981.45, bill.getOrderPrice(items, user), 1e-3);
     }
 
+    @Test//[7]
+    public void testPriceLess10() throws BillException {
+        System.out.println(" testPriceLess10");
+
+        items.add(new EItemImpl(ProductType.M, "Tecknet PRO", 9.90));
+
+        assertEquals(11.90, bill.getOrderPrice(items, user), 1e-3);
+    }
+
     @After
     public void end() {
         System.out.println("    FINE TEST");
