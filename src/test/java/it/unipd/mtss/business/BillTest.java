@@ -30,6 +30,15 @@ public class BillTest {
         System.out.print("\nINIZIO TEST");
     }
 
+    //[6]
+    @Test(expected = BillException.class)
+    public void testMore30() throws BillException {
+        System.out.println(" testMore30");
+        for(int i=0; i<35; i++)
+            items.add(new EItemImpl(ProductType.Motherboard, "Motherboard "+i, 10.90+i));
+        double price = bill.getOrderPrice(items, user);
+    }
+
     @Test(expected = BillException.class)
     public void testNullItems() throws BillException {
         System.out.println(" testNullItems");
