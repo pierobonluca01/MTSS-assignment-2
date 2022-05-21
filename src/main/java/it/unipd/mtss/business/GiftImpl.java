@@ -23,5 +23,25 @@ public class GiftImpl implements Gift {
 
         this.orders = orders;
     }
+
+
+    public long[] giftedUsersId() throws GiftException {
+        orders.removeIf(o -> o.getTime().isBefore(LocalTime.of(18, 00)) || o.getTime().isAfter(LocalTime.of(19, 00)));
+        orders.removeIf(o -> o.getUser().getAge() > 17);
+
+        long[] users = new long[10];
+        random = new Random(100);
+
+        if (orders.size() < 10) throw new GiftException("Gli ordini non sono sufficienti per poterne regalare 10.");
+
+        for (int i = 0; i < 10; i++) {
+            int n = random.nextInt(orders.size());
+            users[i] = orders.get(n).getUser().getId();
+            System.out.print(" " + users[i]);
+            orders.remove(n);
+        }
+
+        return users;
+    }
 }
 
