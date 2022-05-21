@@ -103,7 +103,22 @@ public class BillTest {
 
         assertEquals(289.60, bill.getOrderPrice(items, user), 1e-3);
     }
-    
+
+    @Test//[4]
+    public void testGiftSameMouseKeyboard() throws BillException {
+        System.out.println(" testGiftSameMouseKeyboard");
+
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 24.50));
+        items.add(new EItemImpl(ProductType.Keyboard, "Logitech MX Keys", 45.10));
+        items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 36.90));
+
+        assertEquals(168.80, bill.getOrderPrice(items, user), 1e-3);
+    }
+
+
     @After
     public void end() {
         System.out.println("    FINE TEST");
