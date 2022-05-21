@@ -21,6 +21,9 @@ public class BillImpl implements Bill {
         if(itemsOrdered.isEmpty()) throw new BillException("La lista di elementi e' vuota.");
         if(user == null) throw new BillException("L'utente risulta null.");
 
+        //[6]
+        if(itemsOrdered.size() > 30) throw new BillException("Sono stati inseriti più di 30 elementi.");
+
         double total = 0;
         int processorsCount = 0;
         int mousesCount = 0;
