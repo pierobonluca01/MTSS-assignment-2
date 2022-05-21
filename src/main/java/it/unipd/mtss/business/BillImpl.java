@@ -23,6 +23,8 @@ public class BillImpl implements Bill {
 
         double total = 0;
         int processorsCount = 0;
+        int mousesCount = 0;
+        double lessExpensiveMouse = Double.MAX_VALUE;
         double lessExpensiveProcessor = Double.MAX_VALUE;
 
         for(EItem item : itemsOrdered) {
@@ -36,11 +38,24 @@ public class BillImpl implements Bill {
                     lessExpensiveProcessor = item.getPrice();
                 }
             }
+            //[3]
+            if(item.getItemType() == ProductType.Mouse) {
+                mousesCount++;
+                if(item.getPrice() < lessExpensiveMouse) {
+                    lessExpensiveMouse = item.getPrice();
+                }
+            }
         }
 
         //[2]
         if(processorsCount > 5) {
             total = total-(lessExpensiveProcessor/2);
+        }
+
+        //[3]
+        if(mousesCount > 10) {
+            total = total - lessExpensiveMouse;
+            lessExpensiveMouse = 0;
         }
 
         return total;
