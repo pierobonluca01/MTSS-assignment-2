@@ -84,6 +84,25 @@ public class BillTest {
 
         assertEquals(844.45, bill.getOrderPrice(items, user), 1e-3);
     }
+
+    @Test//[3]
+    public void testGiftMouse() throws BillException {
+        System.out.println(" testGiftMouse ");
+
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "Trust Voca", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech M220", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "Coolerplus FC112", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "HP - PC X500", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Kensington Mouse", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "CHERRY MC 1000", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Black Shark Mouse", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "HyperX Pulsefire", 8.10));
+
+        assertEquals(289.60, bill.getOrderPrice(items, user), 1e-3);
+    }
     
     @After
     public void end() {
