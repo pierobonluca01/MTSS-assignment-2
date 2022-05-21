@@ -72,6 +72,11 @@ public class BillImpl implements Bill {
             total = total - Math.min(lessExpensiveMouse, lessExpensiveKeyboard);
         }
 
+        //[5]
+        if(total > 1000) {
+            total = total * 0.9;
+        }
+
         return total;
     }
 }
