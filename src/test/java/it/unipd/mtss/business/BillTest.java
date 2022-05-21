@@ -113,6 +113,26 @@ public class BillTest {
         assertEquals(289.60, bill.getOrderPrice(items, user), 1e-3);
     }
 
+    @Test//[3]
+    public void testGiftMouseSamePrice() throws BillException {
+        System.out.println(" testGiftMouseSamePrice");
+
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "Trust Voca", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech M220", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "Coolerplus FC112", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "HP - PC X500", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Kensington Mouse", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "CHERRY MC 1000", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Black Shark Mouse", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "HyperX Pulsefire", 8.10));
+        items.add(new EItemImpl(ProductType.Mouse, "HyperX Pulsefire", 8.10));
+
+        assertEquals(297.70, bill.getOrderPrice(items, user), 1e-3);
+    }
+
     @Test//[4]
     public void testGiftSameMouseKeyboard() throws BillException {
         System.out.println(" testGiftSameMouseKeyboard");
@@ -125,6 +145,51 @@ public class BillTest {
         items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 36.90));
 
         assertEquals(168.80, bill.getOrderPrice(items, user), 1e-3);
+    }
+
+    @Test//[4]
+    public void testGiftSameKeyboardMouse() throws BillException {
+        System.out.println(" testGiftSameMouseKeyboard");
+
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 45.10));
+        items.add(new EItemImpl(ProductType.Mouse, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 24.50));
+        items.add(new EItemImpl(ProductType.Keyboard, "Logitech MX Keys", 11.90));
+        items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 36.90));
+
+        assertEquals(168.80, bill.getOrderPrice(items, user), 1e-3);
+    }
+
+    @Test//[4]
+    public void testGiftSameKeyboardMouseMore10() throws BillException {
+        System.out.println(" testGiftSameKeyboardMouseMore10");
+
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "Trust Voca", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Logitech M220", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "Coolerplus FC112", 45.90));
+        items.add(new EItemImpl(ProductType.Mouse, "HP - PC X500", 11.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Kensington Mouse", 16.40));
+        items.add(new EItemImpl(ProductType.Mouse, "CHERRY MC 1000", 30.50));
+        items.add(new EItemImpl(ProductType.Mouse, "Black Shark Mouse", 40.10));
+        items.add(new EItemImpl(ProductType.Mouse, "HyperX Pulsefire", 8.10));
+
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 45.90));
+        items.add(new EItemImpl(ProductType.Keyboard, "Logitech MX Keys", 11.90));
+        items.add(new EItemImpl(ProductType.Keyboard, "Amazon Basics", 16.40));
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 30.50));
+        items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 40.10));
+        items.add(new EItemImpl(ProductType.Keyboard, "Logitech MX Keys", 45.90));
+        items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 11.90));
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 16.40));
+        items.add(new EItemImpl(ProductType.Keyboard, "Microsoft Surface Pro Keyboard", 30.50));
+        items.add(new EItemImpl(ProductType.Keyboard, "Logitech MX Keys", 40.10));
+        items.add(new EItemImpl(ProductType.Keyboard, "Trust Keys", 2.60)); // Mouse already discounted by 100%, keyboard ignored
+
+        assertEquals(581.80, bill.getOrderPrice(items, user), 1e-3);
     }
 
     @Test//[5]

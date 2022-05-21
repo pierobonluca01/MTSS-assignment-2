@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import static org.junit.Assert.*;
 
 public class UserTest {
+
     User user;
 
     @Before
@@ -51,6 +52,37 @@ public class UserTest {
         System.out.println(" testInvalidBirth");
         User userNull = new UserImpl(10, "Name", "Surname", LocalDate.of(3000, 11, 23));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetNullId() {
+        System.out.println(" testSetNullId");
+        user.setId(-15);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetNullName() {
+        System.out.println(" testSetNullName");
+        user.setName(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetNullSurname() {
+        System.out.println(" testSetNullSurname");
+        user.setSurname(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetNullBirth() {
+        System.out.println(" testSetNullBirth");
+        user.setBirth(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetInvalidBirth() {
+        System.out.println(" testSetInvalidBirth");
+        user.setBirth(LocalDate.of(3000, 11, 23));
+    }
+
     @Test
     public void testIdSetGet() {
         System.out.println(" testIdSetGet");
