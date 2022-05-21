@@ -59,6 +59,11 @@ public class BillImpl implements Bill {
             }
         }
 
+        //[7]
+        if(total < 10) {
+            total += 2;
+        }
+
         //[2]
         if(processorsCount > 5) {
             total = total-(lessExpensiveProcessor/2);

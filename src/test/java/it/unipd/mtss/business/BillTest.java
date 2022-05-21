@@ -144,7 +144,7 @@ public class BillTest {
     public void testPriceLess10() throws BillException {
         System.out.println(" testPriceLess10");
 
-        items.add(new EItemImpl(ProductType.M, "Tecknet PRO", 9.90));
+        items.add(new EItemImpl(ProductType.Mouse, "Tecknet PRO", 9.90));
 
         assertEquals(11.90, bill.getOrderPrice(items, user), 1e-3);
     }
