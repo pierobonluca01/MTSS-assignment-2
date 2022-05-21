@@ -118,6 +118,18 @@ public class BillTest {
         assertEquals(168.80, bill.getOrderPrice(items, user), 1e-3);
     }
 
+    @Test//[5]
+    public void testDiscount1000() throws BillException {
+        System.out.println(" testDiscount1000");
+
+        items.add(new EItemImpl(ProductType.M, "Logitech G502", 45.90));
+        items.add(new EItemImpl(ProductType.M, "Tecknet PRO", 11.90));
+        items.add(new EItemImpl(ProductType.P, "Intel i5", 140.90));
+        items.add(new EItemImpl(ProductType.SM, "ASUS X570", 830.90));
+        items.add(new EItemImpl(ProductType.T, "Corsair K65", 60.90));
+
+        assertEquals(981.45, bill.getOrderPrice(items, user), 1e-3);
+    }
 
     @After
     public void end() {
